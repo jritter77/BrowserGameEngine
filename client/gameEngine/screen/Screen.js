@@ -6,7 +6,7 @@ class Screen {
         this.canvas = document.createElement('CANVAS');
         this.ctx = this.canvas.getContext('2d');
         
-        this.canvas.id = 'myCanvas';
+        this.canvas.id = 'gameCanvas';
         this.canvas.width = 800;
         this.canvas.height = 480;
         this.canvas.style.backgroundColor = 'black';
@@ -15,7 +15,7 @@ class Screen {
     }
     
 
-    drawRect(x, y, width, height, color="black") {
+    drawRect(x, y, width, height, color="red") {
         const ctx = this.ctx;
         ctx.beginPath();
         ctx.rect(x, y, width, height);
@@ -23,6 +23,24 @@ class Screen {
         ctx.fill();
         ctx.closePath();
     }
+
+	drawCircle(x, y, size, color="red"){
+        const ctx = this.ctx;
+		ctx.beginPath();
+		ctx.arc(x, y, size, 0, Math.PI*2);
+		ctx.fillStyle = color;
+		ctx.fill();
+		ctx.closePath();
+	}
+
+	drawText(x, y, str, style="30px Arial"){
+        const ctx = this.ctx;
+		ctx.font = style;
+		ctx.fillStyle = "red";
+		ctx.fillText(str, x, y);
+	}
+
+    
 
 }
 

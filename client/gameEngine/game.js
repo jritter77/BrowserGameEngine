@@ -1,8 +1,8 @@
-import {Input} from './input.js';
-import {Screen} from './screen.js';
-import {GUI} from './GUI.js';
-import {World} from './world.js';
-import {Field} from './field.js';
+import {Input} from './input/Input.js';
+import {Screen} from './screen/Screen.js';
+import {GUI} from './GUI/GUI.js';
+import {World} from './world/World.js';
+import {Field} from './field/Field.js';
 
 
 class Game {
@@ -16,9 +16,9 @@ class Game {
     static field;
 
     static launch() {
-        Game.input = new Input();
         Game.screen = new Screen();
         Game.gameGUI = new GUI();
+        Game.input = new Input();
         Game.world = new World();
         Game.field = new Field();
 
@@ -38,6 +38,7 @@ class Game {
         this.step();
         this.checkCollisions();
         this.draw();
+        this.drawGUI();
         
         requestAnimationFrame(this.gameLoop.bind(this));
         
@@ -92,6 +93,24 @@ class Game {
             }
         } 
     }
+
+
+    static drawGUI() {
+        // DrawGUI Event - executes draw function of GUI instances
+        Game.input.mouseInput.dispMouseCoord();
+
+        Game.screen.drawText(0, 128, Game.input.keyboardInput.spacePressed);
+
+
+        for (let type in Game.gameGUI.instances) {
+            for (let name in Game.gameGUI.instances[type]) {
+                for (let inst of Game.gameGUI.instances[type][name]) {
+                    inst.draw(Game.screen.ctx);
+                }
+            }
+        } 
+    }
+
 }
 
 export {Game}

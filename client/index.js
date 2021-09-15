@@ -1,7 +1,7 @@
-import {Game} from './gameEngine/game.js';
+import {Game} from './gameEngine/Game.js';
 
-import {Player} from './gameEngine/fieldObjects/ships/player.js';
-import {Enemy1} from './gameEngine/fieldObjects/ships/enemy1.js';
+import {Player} from './gameEngine/field/ships/player.js';
+import {Enemy1} from './gameEngine/field/ships/enemy1.js';
 
 $('#app').html(`
     <div class='row'>
