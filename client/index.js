@@ -14,4 +14,4 @@ $('#app').html(`
 
 Game.launch();
 
-Game.field.createShip(Ship, 128, 128);
+Game.field.createShip(Player, 128, 128);

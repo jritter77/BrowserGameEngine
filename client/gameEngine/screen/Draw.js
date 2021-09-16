@@ -42,6 +42,7 @@ class Draw {
 
     //DRAW POLYGON FUNCTIONS
     poly(x, y, size, sides, angle=0, color="red"){
+        angle += Math.PI/4;
         var spread = (Math.PI*2)/sides;
         this.ctx.beginPath();
         this.ctx.moveTo(x + size*Math.cos(angle), y + size*Math.sin(angle));
