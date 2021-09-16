@@ -1,7 +1,8 @@
 import { Game } from "../../Game.js";
 import { MyTools } from '../../MyTools.js';
 import {Ship} from './Ship.js';
-import {Part} from '../parts/Part.js';
+import {Body} from '../parts/Body.js';
+import {Cannon} from '../parts/Cannon.js';
 
 class Player extends Ship {
 
@@ -10,11 +11,12 @@ class Player extends Ship {
         super(x, y);
         this.name = 'Player';
 
-        this.parts.push(new Part(this, 0, this.spacing));
-        this.parts.push(new Part(this, this.spacing, 0));
-        this.parts.push(new Part(this, -this.spacing, 0));
-        this.parts.push(new Part(this, 0, this.spacing*2));
-        this.parts.push(new Part(this, 0, -this.spacing));
+        this.parts.push(new Body(this, 0, this.spacing));
+        this.parts.push(new Cannon(this, this.spacing, 0));
+        this.parts.push(new Cannon(this, -this.spacing, 0));
+        this.parts.push(new Cannon(this, 0, this.spacing*2));
+        this.parts.push(new Body(this, 0, -this.spacing));
+
     }
 
     step() {

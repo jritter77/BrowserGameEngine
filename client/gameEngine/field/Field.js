@@ -4,7 +4,8 @@
 class Field {
     constructor() {
         this.instances = {      // type.name[inst]
-            ships: {}
+            ships: {},
+            projectiles: {}
         };    
     }
 
@@ -45,6 +46,16 @@ class Field {
         }
         catch {
             this.instances.ships[inst.name] = [inst];
+        }
+    }
+
+    createProjectile(obj, x, y, dir) {
+        const inst = new obj(x, y, dir);
+        try {
+            this.instances.projectiles[inst.name].push(inst);
+        }
+        catch {
+            this.instances.projectiles[inst.name] = [inst];
         }
     }
 
