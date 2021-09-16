@@ -16,10 +16,10 @@ class Player {
 
     step() {
         // step event
-        this.mousePos = Game.input.mouseInput.getMousePos();
+        this.mousePos = Game.input.mouse.getMousePos();
         this.mouseDir = MyTools.getDir(this.x, this.y, this.mousePos.x, this.mousePos.y);
 
-        if (Game.input.mouseInput.mouseDown) {
+        if (Game.input.mouse.mouseDown) {
             this.x += this.speed * Math.cos(this.mouseDir);
             this.y += this.speed * Math.sin(this.mouseDir);
         }

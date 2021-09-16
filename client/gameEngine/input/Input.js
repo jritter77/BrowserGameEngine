@@ -6,8 +6,8 @@ import { KeyboardInput } from './KeyboardInput.js';
 class Input {
     
     constructor() {
-        this.mouseInput = new MouseInput();
-        this.keyboardInput = new KeyboardInput();
+        this.mouse = new MouseInput();
+        this.keyboard = new KeyboardInput();
     }
     
     step() {

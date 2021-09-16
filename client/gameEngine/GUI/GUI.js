@@ -26,7 +26,9 @@ class GUI {
     
     draw() {
         // DrawGUI Event - executes draw function of GUI instances
-        Game.input.mouseInput.dispMouseCoord();
+        Game.input.mouse.dispMouseCoord();
+
+        Game.screen.draw.text(34, 256, Game.input.keyboard.leftPressed);
 
         for (let type in this.instances) {
             for (let name in this.instances[type]) {

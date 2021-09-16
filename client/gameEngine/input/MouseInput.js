@@ -10,7 +10,7 @@ class MouseInput {
     
     mouseMoveHandler(e) {				
         //triggers whenever mouse is moved
-        Game.input.mouseInput.mouse_pos = Game.input.mouseInput.mousePosHandler(e);
+        Game.input.mouse.mouse_pos = Game.input.mouse.mousePosHandler(e);
     }
     
     

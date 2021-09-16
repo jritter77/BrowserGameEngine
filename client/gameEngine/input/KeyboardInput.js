@@ -22,16 +22,17 @@ class KeyboardInput {
 
     keyDownHandler(e){
         e.preventDefault();
-        if(e.key === "Right" || e.key === "ArrowRight") {
+        console.log(e.key);
+        if(e.key === "right" || e.key === "ArrowRight" || e.key.toLowerCase() === "d") {
             this.rightPressed = true;
         }
-        else if(e.key === "Left" || e.key === "ArrowLeft") {
+        else if(e.key === "Left" || e.key === "ArrowLeft" || e.key.toLowerCase() === "a") {
             this.leftPressed = true;
         }
-        else if(e.key === "Up" || e.key === "ArrowUp") {
+        else if(e.key === "Up" || e.key === "ArrowUp" || e.key.toLowerCase() === "w") {
             this.upPressed = true;
         }
-        else if(e.key === "Down" || e.key === "ArrowDown") {
+        else if(e.key === "Down" || e.key === "ArrowDown" || e.key.toLowerCase() === "s") {
             this.downPressed = true;
         }
         else if(e.key === "Space" || e.key === ' ') {
@@ -43,16 +44,16 @@ class KeyboardInput {
 
     keyUpHandler(e) {
         e.preventDefault();
-        if(e.key === "Right" || e.key === "ArrowRight") {
+        if(e.key === "Right" || e.key === "ArrowRight" || e.key.toLowerCase() === "d") {
             this.rightPressed = false;
         }
-        else if(e.key === "Left" || e.key === "ArrowLeft") {
+        else if(e.key === "Left" || e.key === "ArrowLeft" || e.key.toLowerCase() === "a") {
             this.leftPressed = false;
         }
-        else if(e.key === "Up" || e.key === "ArrowUp") {
+        else if(e.key === "Up" || e.key === "ArrowUp" || e.key.toLowerCase() === "w") {
             this.upPressed = false;
         }
-        else if(e.key === "Down" || e.key === "ArrowDown") {
+        else if(e.key === "Down" || e.key === "ArrowDown" || e.key.toLowerCase() === "s") {
             this.downPressed = false;
         }
         else if(e.key === "Space" || e.key === ' ') {

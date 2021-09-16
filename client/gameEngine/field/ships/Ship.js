@@ -10,8 +10,9 @@ class Ship {
         this.x = x;
         this.y = y;
         this.speed = 3;
-        this.parts = [];
         this.spacing = 12;
+        
+        this.parts = [];
 
         this.parts.push(new Part(this, 0, this.spacing));
         this.parts.push(new Part(this, this.spacing, 0));
@@ -23,11 +24,11 @@ class Ship {
 
     step() {
         // step event
-        this.mousePos = Game.input.mouseInput.getMousePos();
+        this.mousePos = Game.input.mouse.getMousePos();
         this.mouseDir = MyTools.getDir(this.x, this.y, this.mousePos.x, this.mousePos.y);
 
 
-        if (Game.input.mouseInput.mouseDown) {
+        if (Game.input.mouse.mouseDown) {
             this.x += this.speed * Math.cos(this.mouseDir);
             this.y += this.speed * Math.sin(this.mouseDir);
         }
