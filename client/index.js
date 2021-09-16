@@ -2,6 +2,7 @@ import {Game} from './gameEngine/Game.js';
 
 import {Player} from './gameEngine/field/ships/player.js';
 import {Enemy1} from './gameEngine/field/ships/enemy1.js';
+import {Ship} from './gameEngine/field/ships/Ship.js';
 
 $('#app').html(`
     <div class='row'>
@@ -13,5 +14,4 @@ $('#app').html(`
 
 Game.launch();
 
-Game.field.createShip(Player, 128, 128);
-Game.field.createShip(Enemy1, 256, 256);
+Game.field.createShip(Ship, 128, 128);

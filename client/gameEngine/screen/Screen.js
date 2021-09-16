@@ -1,5 +1,6 @@
-// Screen Module - Holds information about canvas and methods for drawing to the screen
+import {Draw} from './Draw.js';
 
+// Screen Module - Holds information about canvas and methods for drawing to the screen
 class Screen {
 
     constructor() {
@@ -12,33 +13,10 @@ class Screen {
         this.canvas.style.backgroundColor = 'black';
 
         $('#gameContainer').append(this.canvas);
+
+        this.draw = new Draw(this.ctx);
     }
     
-
-    drawRect(x, y, width, height, color="red") {
-        const ctx = this.ctx;
-        ctx.beginPath();
-        ctx.rect(x, y, width, height);
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.closePath();
-    }
-
-	drawCircle(x, y, size, color="red"){
-        const ctx = this.ctx;
-		ctx.beginPath();
-		ctx.arc(x, y, size, 0, Math.PI*2);
-		ctx.fillStyle = color;
-		ctx.fill();
-		ctx.closePath();
-	}
-
-	drawText(x, y, str, style="30px Arial"){
-        const ctx = this.ctx;
-		ctx.font = style;
-		ctx.fillStyle = "red";
-		ctx.fillText(str, x, y);
-	}
 
     
 

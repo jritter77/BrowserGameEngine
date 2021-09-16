@@ -2,6 +2,15 @@
 
 class World {
 
+
+    constructor() {
+        this.currentScreen = 'titleScreen';
+        this.user = 'player1';
+    }
+
+    step() {
+        // world step event
+    }
 }
 
 export {World}

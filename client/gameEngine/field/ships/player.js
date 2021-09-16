@@ -1,23 +1,29 @@
 import { Game } from "../../Game.js";
-
+import { MyTools } from '../../MyTools.js';
 
 
 class Player {
+
 
     constructor(x, y) {
         this.name = 'Player';
         this.x = x;
         this.y = y;
-        this.width = 128;
-        this.height = 128;
-        this.speed = 5;
+        this.width = 32;
+        this.height = 32;
+        this.speed = 3;
     }
 
     step() {
         // step event
-        if (this.x < Game.screen.canvas.width - this.width) {
-            this.x += this.speed;
+        this.mousePos = Game.input.mouseInput.getMousePos();
+        this.mouseDir = MyTools.getDir(this.x, this.y, this.mousePos.x, this.mousePos.y);
+
+        if (Game.input.mouseInput.mouseDown) {
+            this.x += this.speed * Math.cos(this.mouseDir);
+            this.y += this.speed * Math.sin(this.mouseDir);
         }
+        
     }
 
     collision() {
@@ -25,7 +31,9 @@ class Player {
     }
 
     draw() {
-        Game.screen.drawRect(this.x, this.y, this.width, this.height, 'green');
+
+        Game.screen.draw.poly(this.x, this.y, 32, 4, this.mouseDir+Math.PI/4, 'green');
+
     }
 
 }

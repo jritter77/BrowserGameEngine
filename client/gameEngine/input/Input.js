@@ -10,6 +10,9 @@ class Input {
         this.keyboardInput = new KeyboardInput();
     }
     
+    step() {
+        // step event for input
+    }
     
 }
 

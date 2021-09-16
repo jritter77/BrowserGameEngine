@@ -3,6 +3,7 @@ import { Game } from '../Game.js';
 class MouseInput {
     
     constructor() {
+        this.mouseDown = false;
         this.mouse_pos = {x: 0, y: 0};			//initialize mouse mouse_position
         this.setMouseListeners();
     }
@@ -15,15 +16,17 @@ class MouseInput {
     
     mouseDownHandler(e){				
         //triggers anytime mouse is clicked
-        console.log('clicked!');
+        this.mouseDown = true;
     }
     
     
     mouseUpHandler(e){				
         //triggers anytime mouse is released
+        this.mouseDown = false;
     }
     
     wheelHandler(e){
+        e.preventDefault();
         if (e.deltaY < 0){
             //scroll up code here
             console.log("up");
@@ -54,8 +57,8 @@ class MouseInput {
     setMouseListeners() {
         const canvas = document.getElementById('gameCanvas');
         canvas.addEventListener("mousemove", this.mouseMoveHandler, false);
-        canvas.addEventListener("mousedown", this.mouseDownHandler, false);
-        canvas.addEventListener("mouseup", this.mouseUpHandler, false);
+        canvas.addEventListener("mousedown", this.mouseDownHandler.bind(this), false);
+        canvas.addEventListener("mouseup", this.mouseUpHandler.bind(this), false);
         canvas.addEventListener("wheel", this.wheelHandler, false);
     }
 

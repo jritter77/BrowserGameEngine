@@ -8,8 +8,8 @@ class Enemy1 {
         this.name = 'Enemy1';
         this.x = x;
         this.y = y;
-        this.width = 128;
-        this.height = 128;
+        this.width = 32;
+        this.height = 32;
         this.speed = 5;
     }
 

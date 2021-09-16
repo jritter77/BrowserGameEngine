@@ -21,7 +21,7 @@ class KeyboardInput {
 
 
     keyDownHandler(e){
-        console.log(e.key);
+        e.preventDefault();
         if(e.key === "Right" || e.key === "ArrowRight") {
             this.rightPressed = true;
         }
@@ -42,6 +42,7 @@ class KeyboardInput {
 
 
     keyUpHandler(e) {
+        e.preventDefault();
         if(e.key === "Right" || e.key === "ArrowRight") {
             this.rightPressed = false;
         }
