@@ -1,5 +1,6 @@
-
 // Field Module - Holds information regarding the gamefield and instances within it
+
+import { TreeTools } from "../../../myModules/TreeTools";
 
 class Field {
     constructor() {
@@ -11,26 +12,13 @@ class Field {
 
 
     step() {
-        for (let type in this.instances) {
-            for (let name in this.instances[type]) {
-                for (let inst of this.instances[type][name]) {
-                    inst.step();
-                }
-            }
-        } 
+        TreeTools.executeEach(this.instances, 'step'); 
     }
 
 
 
     draw() {
-        // Draw Event - executes draw function of all instances
-        for (let type in this.instances) {
-            for (let name in this.instances[type]) {
-                for (let inst of this.instances[type][name]) {
-                    inst.draw();
-                }
-            }
-        } 
+        TreeTools.executeEach(this.instances, 'draw');  
     }
 
 

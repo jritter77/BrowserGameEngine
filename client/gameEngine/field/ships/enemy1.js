@@ -1,23 +1,26 @@
 import { Game } from "../../Game.js";
+import {Ship} from './Ship.js';
+import {Body} from '../parts/Body.js';
+import {Cannon} from '../parts/Cannon.js';
 
+class Enemy1 extends Ship {
 
-
-class Enemy1 {
 
     constructor(x, y) {
+        super(x, y);
         this.name = 'Enemy1';
-        this.x = x;
-        this.y = y;
-        this.width = 32;
-        this.height = 32;
-        this.speed = 5;
+
+        this.parts.push(new Body(this, 0, this.spacing));
+        this.parts.push(new Cannon(this, this.spacing, 0));
+        this.parts.push(new Cannon(this, -this.spacing, 0));
+        this.parts.push(new Cannon(this, 0, this.spacing*2));
+        this.parts.push(new Body(this, 0, -this.spacing));
+
     }
 
     step() {
-        // step event
-        if (this.x < Game.screen.canvas.width - this.width) {
-            this.x += this.speed;
-        }
+        this.basicMovement();
+        this.stepParts();
     }
 
     collision() {
@@ -25,7 +28,17 @@ class Enemy1 {
     }
 
     draw() {
-        Game.screen.drawRect(this.x, this.y, this.width, this.height, 'red');
+        // draws main body of ship
+        Game.screen.draw.poly(this.x, this.y, this.size, 4, this.angle, 'red');
+        this.drawParts();
+    }
+
+
+
+    basicMovement() {
+        this.angle += 2*Math.PI/180;
+        this.x += this.speed * Math.cos(this.angle);
+        this.y += this.speed * Math.sin(this.angle);
     }
 
 }

@@ -22,7 +22,6 @@ class KeyboardInput {
 
     keyDownHandler(e){
         e.preventDefault();
-        console.log(e.key);
         if(e.key === "right" || e.key === "ArrowRight" || e.key.toLowerCase() === "d") {
             this.rightPressed = true;
         }

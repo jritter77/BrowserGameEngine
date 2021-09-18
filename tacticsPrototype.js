@@ -1,4 +1,4 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
 
 //GENERAL FUNCTIONS MODULE START**********************************************************************************
@@ -347,11 +347,11 @@ canvas.addEventListener("wheel", wheelHandler, false);
 
 
 //State Vars///////////////////////////////////////
-middlePressed = false;
-mouseClicked = false;
-mouseUnclicked = false;
-mouseScrollUp = false;
-mouseScrollDown = false;
+let middlePressed = false;
+let mouseClicked = false;
+let mouseUnclicked = false;
+let mouseScrollUp = false;
+let mouseScrollDown = false;
 ///////////////////////////////////////////////////
 
 //Clear States Function////////////////////////////
@@ -611,6 +611,8 @@ world.draw = function(){
 	drawRectStroke(this.x, this.y, canvas.width*this.scale, canvas.height*this.scale);
 }
 
+let worldMouseY;
+let worldMouseX;
 
 world.zoom = function(){
 	worldMouseX = (mousePos.x - world.x)/world.scale;

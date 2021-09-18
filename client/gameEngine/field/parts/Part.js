@@ -1,5 +1,5 @@
 import {Game} from '../../Game.js';
-import {MyTools} from '../../MyTools.js';
+import {MyTools} from '../../../../myModules/MyTools.js';
 
 
 class Part {

@@ -1,5 +1,5 @@
 import { Game } from "../../Game.js";
-import { MyTools } from '../../MyTools.js';
+import { MyTools } from '../../../../myModules/MyTools.js';
 import {Ship} from './Ship.js';
 import {Body} from '../parts/Body.js';
 import {Cannon} from '../parts/Cannon.js';
@@ -21,8 +21,13 @@ class Player extends Ship {
 
     step() {
         this.basicMovement();
-
-        super.step();
+        
+        this.ability.up = Game.input.keyboard.upPressed;
+        this.ability.down = Game.input.keyboard.downPressed;
+        this.ability.left = Game.input.keyboard.leftPressed;
+        this.ability.right = Game.input.keyboard.rightPressed;
+        
+        this.stepParts();
     }
 
     collision() {
@@ -30,27 +35,27 @@ class Player extends Ship {
     }
 
     draw() {
-
         // draws main body of ship
         Game.screen.draw.poly(this.x, this.y, this.size, 4, this.angle, 'green');
-
-        super.draw();
-
+        this.drawParts();
     }
 
+
+    
 
 
     basicMovement() {
 
-        // get mouse position and direction
-        this.mousePos = Game.input.mouse.getMousePos();
-        this.mouseDir = MyTools.getDir(this.x, this.y, this.mousePos.x, this.mousePos.y);
-        this.angle = this.mouseDir;
+        // get mouse position
+        let mousePos = Game.input.mouse.getMousePos();
+        
+        // rotate towards mouse
+        this.rotateTowards(mousePos.x, mousePos.y);
 
-        // have ship follow mouse according to speed if mouseDown true
+        // move ship in current direction according to speed if mouseDown true
         if (Game.input.mouse.mouseDown) {
-            this.x += this.speed * Math.cos(this.mouseDir);
-            this.y += this.speed * Math.sin(this.mouseDir);
+            this.x += this.speed * Math.cos(this.angle);
+            this.y += this.speed * Math.sin(this.angle);
         }
     }
 

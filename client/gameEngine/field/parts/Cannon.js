@@ -16,15 +16,15 @@ class Cannon extends Part {
         this.power = 1;
         this.recoil = 10;
         this.recTimer = 0;
+        this.trigger = 'up';
         
-
     }
 
     step() {
         super.step();
 
         if (this.recTimer < 1) {
-            if (Game.input.keyboard.spacePressed) {
+            if (this.ship.ability[this.trigger]) {
                 this.shoot();
                 this.recTimer = 10;
             }

@@ -1,3 +1,4 @@
+import { TreeTools } from '../../../myModules/TreeTools.js';
 import {Game} from '../Game.js';
 
 // GUI Module - Monitors and handles all GUI input
@@ -5,20 +6,16 @@ import {Game} from '../Game.js';
 class GUI {
     constructor() {
         this.instances = {
-            text: {}
+            text: {},
+            buttons: {},
+            meters: {}
         }
     }
 
 
 
     step() {
-        for (let type in this.instances) {
-            for (let name in this.instances[type]) {
-                for (let inst of this.instances[type][name]) {
-                    inst.step();
-                }
-            }
-        }
+        TreeTools.executeEach(this.instances, 'step'); 
     }
 
 
@@ -27,16 +24,10 @@ class GUI {
     draw() {
         // DrawGUI Event - executes draw function of GUI instances
         Game.input.mouse.dispMouseCoord();
-
-
-        for (let type in this.instances) {
-            for (let name in this.instances[type]) {
-                for (let inst of this.instances[type][name]) {
-                    inst.draw();
-                }
-            }
-        }
+        TreeTools.executeEach(this.instances, 'draw'); 
     }
+
+    
 
     createTextObj(obj, x, y) {
         const inst = new obj(x, y);
