@@ -12,7 +12,7 @@ class Projectile {
         this.dir = dir;
         this.speed = 10;
         this.size = 2;
-
+        this.power = 50;
     }
 
     step() {
@@ -25,14 +25,19 @@ class Projectile {
     }
 
     collision() {
-        TreeTools.forAll(Game.field.instances.ships, this.partCollision.bind(this));
+        TreeTools.forAll(Game.field.instances.ships, this.shipCollision.bind(this));
     }
 
-    partCollision(ship) {
+    shipCollision(ship) {
         if (this.ship !== ship) {
+            if (MyTools.collisionCircleObj(this, ship)) {
+                ship.condition -= this.power;
+                this.destroy();
+                return;
+            }
             for (let part of ship.parts) {
                 if (MyTools.collisionCircleObj(this, part)) {
-                    console.log(this, part);
+                    part.condition -= this.power;
                     this.destroy();
                 }
             }

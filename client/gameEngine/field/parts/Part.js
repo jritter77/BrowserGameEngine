@@ -15,6 +15,10 @@ class Part {
     }
 
     step() {
+        if (this.condition < 1) {
+            this.destroy();
+        }
+        
         this.x = this.ship.x + this.offset * Math.cos(this.ship.angle + this.dir - Math.PI/2);
         this.y = this.ship.y + this.offset * Math.sin(this.ship.angle + this.dir - Math.PI/2);
     }
@@ -29,6 +33,15 @@ class Part {
 
     }
 
+
+    destroy() {
+        let arr = this.ship.parts;
+        for (let i=0; i < arr.length; i++) {
+            if (this === arr[i]) {
+                this.ship.parts.splice(i, 1);
+            }
+        }
+    }
 }
 
 export{Part}

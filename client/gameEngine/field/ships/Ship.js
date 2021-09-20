@@ -1,5 +1,4 @@
 import { MyTools } from "../../../../myModules/MyTools";
-import { Game } from "../../Game";
 
 class Ship {
 
@@ -13,6 +12,7 @@ class Ship {
         this.size = 8;
         this.angle = 0;
         this.move = false;
+        this.condition = 20;
         
         this.ability = {
             up: false,
@@ -24,6 +24,9 @@ class Ship {
         this.parts = [];
 
     }
+
+
+    
 
     setPart(part, x, y) {
         this.parts.push(new part(this, this.spacing*x, this.spacing*y));
@@ -43,7 +46,7 @@ class Ship {
 
         let diff = this.angle - dir;
 
-        if (Math.abs(Math.PI - Math.abs(diff)) > Math.PI/180) {
+        if (Math.abs(Math.PI - Math.abs(diff)) > Math.PI/180*2) {
             if (Math.sin(diff) < 0) {
                 this.angle -= this.turnSpeed*Math.PI/180;
             }
@@ -84,9 +87,6 @@ class Ship {
             part.draw();
         }
     }
-
-
-    
 
     
 }

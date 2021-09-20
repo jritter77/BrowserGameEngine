@@ -19,9 +19,25 @@ class Enemy1 extends Ship {
         this.target = {x: this.x, y: this.y}
         this.move = true;
 
+        this.cannonTimer = 0;
+
     }
 
     step() {
+
+        if (this.cannonTimer === 100) {
+            this.cannonTimer = 0;
+            this.ability.up = true;
+        }
+        else {
+            this.cannonTimer++;
+            this.ability.up = false;
+        }
+        
+        if (this.condition < 1) {
+            this.destroy();
+        }
+
         this.basicMovement(this.target);
         this.stepParts();
     }
@@ -36,6 +52,15 @@ class Enemy1 extends Ship {
         this.drawParts();
     }
 
+
+    destroy() {
+        let arr = Game.field.instances.ships[this.name];
+        for (let i=0; i < arr.length; i++) {
+            if (this === arr[i]) {
+                Game.field.instances.ships[this.name].splice(i, 1);
+            }
+        }
+    }
 
 }
 

@@ -21,6 +21,11 @@ class Player extends Ship {
     }
 
     step() {
+
+        if (this.condition < 1) {
+            this.destroy();
+        }
+
         let mousePos = Game.input.mouse.getMousePos();
         this.move = Game.input.mouse.mouseDown;
         this.basicMovement(mousePos);
@@ -43,7 +48,14 @@ class Player extends Ship {
         this.drawParts();
     }
 
-
+    destroy() {
+        let arr = Game.field.instances.ships[this.name];
+        for (let i=0; i < arr.length; i++) {
+            if (this === arr[i]) {
+                Game.field.instances.ships[this.name].splice(i, 1);
+            }
+        }
+    }
 
     
 
