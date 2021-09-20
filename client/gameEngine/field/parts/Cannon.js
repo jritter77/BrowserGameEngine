@@ -35,7 +35,7 @@ class Cannon extends Part {
     }
 
     shoot() {
-        Game.field.createProjectile(this.projectile, this.x, this.y, this.ship.angle);   
+        Game.field.createProjectile(this.ship, this.projectile, this.x, this.y, this.ship.angle);   
     }
 }
 

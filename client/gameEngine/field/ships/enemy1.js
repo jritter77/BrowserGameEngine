@@ -10,16 +10,19 @@ class Enemy1 extends Ship {
         super(x, y);
         this.name = 'Enemy1';
 
-        this.parts.push(new Body(this, 0, this.spacing));
-        this.parts.push(new Cannon(this, this.spacing, 0));
-        this.parts.push(new Cannon(this, -this.spacing, 0));
-        this.parts.push(new Cannon(this, 0, this.spacing*2));
-        this.parts.push(new Body(this, 0, -this.spacing));
+        this.setPart(Cannon, 1, 0);
+        this.setPart(Cannon, -1, 0);
+        this.setPart(Cannon, 0, 2);
+        this.setPart(Body, 0, 1);
+        this.setPart(Body, 0, -1);
+
+        this.target = {x: this.x, y: this.y}
+        this.move = true;
 
     }
 
     step() {
-        this.basicMovement();
+        this.basicMovement(this.target);
         this.stepParts();
     }
 
@@ -33,13 +36,6 @@ class Enemy1 extends Ship {
         this.drawParts();
     }
 
-
-
-    basicMovement() {
-        this.angle += 2*Math.PI/180;
-        this.x += this.speed * Math.cos(this.angle);
-        this.y += this.speed * Math.sin(this.angle);
-    }
 
 }
 

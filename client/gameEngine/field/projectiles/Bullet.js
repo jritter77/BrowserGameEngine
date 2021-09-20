@@ -1,11 +1,13 @@
 import { Projectile } from "./Projectile.js";
 
 class Bullet extends Projectile {
-    constructor(x, y, dir) {
-        super(x, y, dir);
+    constructor(ship, x, y, dir) {
+        super(ship, x, y, dir);
         this.name = "bullet";
     }
 
+
+    
     
 }
 

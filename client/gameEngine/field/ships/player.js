@@ -11,16 +11,19 @@ class Player extends Ship {
         super(x, y);
         this.name = 'Player';
 
-        this.parts.push(new Body(this, 0, this.spacing));
-        this.parts.push(new Cannon(this, this.spacing, 0));
-        this.parts.push(new Cannon(this, -this.spacing, 0));
-        this.parts.push(new Cannon(this, 0, this.spacing*2));
-        this.parts.push(new Body(this, 0, -this.spacing));
+        this.setPart(Body, 1, 0);
+        this.setPart(Body, -1, 0);
+        this.setPart(Cannon, 0, 2);
+        this.setPart(Body, 0, 1);
+        this.setPart(Body, 0, -1);
+
 
     }
 
     step() {
-        this.basicMovement();
+        let mousePos = Game.input.mouse.getMousePos();
+        this.move = Game.input.mouse.mouseDown;
+        this.basicMovement(mousePos);
         
         this.ability.up = Game.input.keyboard.upPressed;
         this.ability.down = Game.input.keyboard.downPressed;
@@ -41,23 +44,8 @@ class Player extends Ship {
     }
 
 
+
     
-
-
-    basicMovement() {
-
-        // get mouse position
-        let mousePos = Game.input.mouse.getMousePos();
-        
-        // rotate towards mouse
-        this.rotateTowards(mousePos.x, mousePos.y);
-
-        // move ship in current direction according to speed if mouseDown true
-        if (Game.input.mouse.mouseDown) {
-            this.x += this.speed * Math.cos(this.angle);
-            this.y += this.speed * Math.sin(this.angle);
-        }
-    }
 
 }
 

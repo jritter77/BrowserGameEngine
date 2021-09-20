@@ -11,6 +11,7 @@ class Part {
         this.dir = MyTools.getDir(ship.x, ship.y, ship.x+x, ship.y+y);
         this.size = 8;
         this.color = 'red';
+        this.condition = 100;
     }
 
     step() {

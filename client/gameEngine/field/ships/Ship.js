@@ -12,6 +12,7 @@ class Ship {
         this.spacing = 12;
         this.size = 8;
         this.angle = 0;
+        this.move = false;
         
         this.ability = {
             up: false,
@@ -22,6 +23,10 @@ class Ship {
         
         this.parts = [];
 
+    }
+
+    setPart(part, x, y) {
+        this.parts.push(new part(this, this.spacing*x, this.spacing*y));
     }
 
 
@@ -47,6 +52,19 @@ class Ship {
             }
         }
         
+    }
+
+
+    basicMovement(target) {
+        
+        // rotate towards mouse
+        this.rotateTowards(target.x, target.y);
+
+        // move ship in current direction according to speed if mouseDown true
+        if (this.move) {
+            this.x += this.speed * Math.cos(this.angle);
+            this.y += this.speed * Math.sin(this.angle);
+        }
     }
 
     

@@ -24,6 +24,7 @@ class Field {
 
     collisions() {
         // field collisions event - detect collisions and take proper action
+        TreeTools.executeEach(this.instances.projectiles, 'collision');
     }
 
 
@@ -37,8 +38,8 @@ class Field {
         }
     }
 
-    createProjectile(obj, x, y, dir) {
-        const inst = new obj(x, y, dir);
+    createProjectile(ship, obj, x, y, dir) {
+        const inst = new obj(ship, x, y, dir);
         try {
             this.instances.projectiles[inst.name].push(inst);
         }
